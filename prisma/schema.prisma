@@ -1,0 +1,62 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Gallery {
+  id   Int    @id @default(autoincrement())
+  url  String
+}
+
+model Pemberitahuan {
+  id   Int    @id @default(autoincrement())
+  url  String
+}
+
+model Berita {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String
+  date        DateTime
+}
+
+model Kepengurusan {
+  id    Int    @id @default(autoincrement())
+  nama  String
+  nip   String
+  peran String
+  email String
+  foto  String
+}
+
+model Feedback {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  email     String
+  telp      String
+  isi       String
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  nama     String
+  email    String  @unique
+  password String
+  telp     String?
+  foto     String?
+  createdAt DateTime @default(now())
+}
+
+model Profile {
+  id      Int    @id @default(autoincrement())
+  nama    String
+  jabatan String
+  foto    String
+}
